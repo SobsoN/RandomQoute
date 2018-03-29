@@ -17,7 +17,8 @@ $(function(){
 
 	function createTweet(input) {
 		const data = input[0],
-			quoteText = $(data.content).text().trim(),
+			quoteTextNo = $(data.content).text().trim(),
+			quoteText = '" ' + quoteTextNo + ' "';
 			quoteAuthor = data.title,
 			tweetText = "Quote of the day - " + quoteText + " Author: " + quoteAuthor;
 
