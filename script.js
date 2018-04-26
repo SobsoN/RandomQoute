@@ -1,10 +1,12 @@
 $(function(){
 
-	const tweetLink = "https://twitter.com/intent/tweet?text=",
-		quoteUrl = "https://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1";
-	var prefix = "https://cors-anywhere.herokuapp.com/";
+	var tweetLink = "https://twitter.com/intent/tweet?text=",
+		quoteUrl = "https://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1",
+		prefix = "https://cors-anywhere.herokuapp.com/",
+		button = $('.trigger');
 	
 	function getQuote() {
+		button.html('<i class="fas fa-spinner fa-spin"></i>').prop('disabled', true);
     	$.getJSON(prefix + quoteUrl, createTweet);
 	}
 
@@ -16,7 +18,8 @@ $(function(){
 	})
 
 	function createTweet(input) {
-		const data = input[0],
+		button.html('Random quote').prop('disabled', false);
+		var data = input[0],
 			quoteTextNo = $(data.content).text().trim(),
 			quoteText = '" ' + quoteTextNo + ' "';
 			quoteAuthor = data.title,
